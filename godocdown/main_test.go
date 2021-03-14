@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "./terst"
+	"github.com/tech10/godocdown/godocdown/terst"
 	"bytes"
 	"path/filepath"
 	"regexp"
@@ -28,8 +28,8 @@ func testImportPath(target, want string) {
 func TestGuessImportPath(t *testing.T) {
 	Terst(t)
 
-	testImportPath("./example", "github.com/robertkrimen/godocdown/godocdown/example")
-	testImportPath("../example", "github.com/robertkrimen/godocdown/example")
+	testImportPath("./example", "github.com/tech10/godocdown/godocdown/example")
+	testImportPath("../example", "github.com/tech10/godocdown/example")
 	if filepath.Separator == '/' {
 		// This test does not work well on windows
 		testImportPath("/not/in/GOfromSlash", "")
@@ -177,7 +177,7 @@ func Test(t *testing.T) {
 
 	renderHeaderTo(buffer, document)
 	if canTestImport() {
-		is("# example\n--\n    import \"github.com/robertkrimen/godocdown/example\"")
+		is("# example\n--\n    import \"github.com/tech10/godocdown/example\"")
 	} else {
 		is("# example\n--")
 	}
@@ -214,7 +214,7 @@ Package example is an example package with documentation
 	`)
 
 	renderSignatureTo(buffer)
-	Is(buffer.String(), "\n\n--\n**godocdown** http://github.com/robertkrimen/godocdown\n")
+	Is(buffer.String(), "\n\n--\n**godocdown** http://github.com/tech10/godocdown\n")
 }
 
 func Test_issue3(t *testing.T) {

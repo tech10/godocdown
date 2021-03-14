@@ -1,0 +1,6 @@
+github.com/tech10/godocdown v0.0.0-20210314223053-df96e726b0bb h1:pYcSZRSrHbxRXLqw3KOjxkWOEVqz6K73KXlz4l9YJpg=
+github.com/tech10/godocdown v0.0.0-20210314223053-df96e726b0bb/go.mod h1:C/yMgSMAN531L7tUlQ+w5/DvsjnimPs0u8vzk4IGgQE=
+github.com/tech10/godocdown/godocdown/dbg v0.0.0-20210314230247-cfefc987f086 h1:uZBhKHH+yYeCmt5TImgqZlI71lvAH92l6R2rFey1Sg0=
+github.com/tech10/godocdown/godocdown/dbg v0.0.0-20210314230247-cfefc987f086/go.mod h1:BuJ+n02jE/Q0uMfoKUPKlB3CBqZlHkmJflMtk26q8YY=
+github.com/tech10/godocdown/godocdown/kilt v0.0.0-20210314230247-cfefc987f086 h1:zUZ2+EkDuHewdHHUL6SOQU9Fnt2YbW34+BgIIYeTwbQ=
+github.com/tech10/godocdown/godocdown/kilt v0.0.0-20210314230247-cfefc987f086/go.mod h1:k6Gft2Q6MJHONAoomm7dJqY3m+l7UDGzASmsIJ0mFCc=
