@@ -360,7 +360,7 @@ func loadDocument(target string) (*_document, error) {
 	fset = token.NewFileSet()
 	pkgSet, err := parser.ParseDir(fset, path, func(file os.FileInfo) bool {
 		name := file.Name()
-		if name[0] != '.' && strings.HasSuffix(name, ".go") && !strings.HasSuffix(name, "_test.go") {
+		if name[0] != '.' && strings.HasSuffix(name, ".go") && !strings.HasSuffix(name, "_test.go") && !strings.HasSuffix(name, ".pb.go") && !strings.HasSuffix(name, ".pb.gw.go") && name != "kallax.go" {
 			return true
 		}
 		return false
