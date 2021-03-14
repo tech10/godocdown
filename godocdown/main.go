@@ -25,9 +25,17 @@ http://github.com/robertkrimen/godocdown/blob/master/example.markdown
 
 Usage
 
-    -outputDir=""                                                                       
-        Write output to a named directory instead of current                                     
+    -all=false                                                                       
+        Generate documentation for all package level declarations,                   
+        not just exported declarations.                                              
+
+    -output=""                                                                       
+        Write output to a file instead of stdout                                     
+        Write to stdout with -                                                       
                                                                                      
+	-outputDir=""
+		Write output to a named directory instead of current
+
     -template=""                                                                     
         The template file to use                                                     
                                                                                      
@@ -127,7 +135,9 @@ var (
 	flag_heading    = flag.String("heading", "TitleCase1Word", "Heading detection method: 1Word, TitleCase, Title, TitleCase1Word, \"\"")
 	flag_template   = flag.String("template", "", "The template file to use")
 	flag_noTemplate = flag.Bool("no-template", false, "Disable template processing")
-	flag_outputDir  = ""
+	flag_all        = flag.Bool("all", false, "Document all code, not just exported code")
+	flag_output     = ""
+ flag_outputDir = ""
 	_               = func() byte {
 		flag.StringVar(&flag_outputDir, "outputDir", flag_outputDir, "Write output to a named directory instead of current")
 		flag.StringVar(&flag_outputDir, "o", flag_outputDir, string(0))
@@ -232,6 +242,14 @@ func indentCode(target string) string {
 		return indent(target+"\n", spacer(4))
 	}
 	return fmt.Sprintf("```go\n%s\n```", target)
+}
+
+func docMode() doc.Mode {
+	if *flag_all {
+		return doc.AllDecls
+	} else {
+		return doc.Mode(0)
+	}
 }
 
 func headifySynopsis(target string) string {
@@ -384,7 +402,7 @@ func loadDocument(target string) (*_document, error) {
 		// Choose the best package for documentation. Either
 		// documentation, main, or whatever the package is.
 		for _, parsePkg := range pkgSet {
-			tmpPkg := doc.New(parsePkg, ".", 0)
+			tmpPkg := doc.New(parsePkg, ".", docMode())
 			switch tmpPkg.Name {
 			case "main":
 				if isCommand || name != "" {
